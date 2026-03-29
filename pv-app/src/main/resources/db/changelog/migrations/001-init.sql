@@ -17,7 +17,7 @@ CREATE TABLE users
     email      VARCHAR(255) UNIQUE NOT NULL,
     code       VARCHAR(255) UNIQUE NOT NULL,
     password   VARCHAR(255)        NOT NULL,
-    enabled    BOOLEAN   DEFAULT TRUE,
+    enabled    BOOLEAN     DEFAULT TRUE,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
@@ -65,12 +65,12 @@ CREATE TABLE roles_privileges
 --Store form templetes - used to store diffrent locations form staructure
 CREATE TABLE form_template
 (
-    id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id         BIGSERIAL PRIMARY KEY,
     name       VARCHAR(255) NOT NULL,
     loc_id     BIGINT       NOT NULL,
     attributes JSONB        NOT NULL,
-    created_at TIMESTAMPTZ        DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ        DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT uq_form_template_name_loc UNIQUE (name, loc_id),
     CONSTRAINT fk_form_template_location
@@ -78,6 +78,19 @@ CREATE TABLE form_template
             REFERENCES locations (id)
 
 );
+
+CREATE TABLE items
+(
+    id         BIGSERIAL PRIMARY KEY,
+    name       VARCHAR(255) NOT NULL,
+    loc_id     BIGINT       NOT NULL,
+    attributes JSONB        NOT NULL, --  FIELD_NAME, FIELD_VALUE
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_item_location FOREIGN KEY (loc_id) REFERENCES location (id)
+);
+CREATE INDEX idx_item_attr_path_ops ON item USING GIN (attributes jsonb_path_ops);
 
 -- Indexing the JSONB column for faster lookups
 CREATE INDEX idx_form_template_attr ON form_template USING GIN (attributes);
@@ -154,7 +167,7 @@ CREATE INDEX idx_data_type_short ON form_field_data_types (name);
 CREATE INDEX idx_type_short ON form_field_types (name);
 
 --Store inspection status , PENDING / APPROVED
-CREATE TABLE inspection_status
+CREATE TABLE inspection_status_md
 (
     id           SERIAL PRIMARY KEY,
     code         VARCHAR(20) UNIQUE NOT NULL, -- e.g., 'PENDING'
@@ -162,16 +175,146 @@ CREATE TABLE inspection_status
 );
 
 --Stores basket master data - 1,2,3
-CREATE TABLE basket
+CREATE TABLE basket_md
 (
     id            BIGSERIAL PRIMARY KEY,
     name          VARCHAR(255)   NOT NULL UNIQUE,
     code          VARCHAR(50)    NOT NULL UNIQUE,
     basket_number INTEGER        NOT NULL UNIQUE,
     self_weight   NUMERIC(10, 3) NOT NULL, -- Precision for weight
+    is_active     BOOLEAN     DEFAULT TRUE,
+    sort_order    INTEGER        NOT NULL,
     created_at    TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Index for code as it will likely be used in search/barcode lookups
-CREATE INDEX idx_basket_code ON basket (code);
+CREATE INDEX idx_basket_md_basket_number ON basket_md (basket_number);
+
+--Stores suppliers master data
+CREATE TABLE supplier_md
+(
+    id         BIGSERIAL PRIMARY KEY,
+    name       VARCHAR(255) NOT NULL UNIQUE,
+    code       VARCHAR(50)  NOT NULL UNIQUE,
+    is_active  BOOLEAN               DEFAULT TRUE,
+    sort_order INTEGER      NOT NULL,
+    created_at TIMESTAMPTZ  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ  NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_supplier_md_code ON supplier_md (code);
+CREATE INDEX idx_supplier_md_name ON supplier_ms (name);
+
+CREATE TABLE spool_md
+(
+    id           BIGSERIAL PRIMARY KEY,
+    name         VARCHAR(255)   NOT NULL UNIQUE,
+    code         VARCHAR(50)    NOT NULL UNIQUE,
+    spool_number INTEGER        NOT NULL UNIQUE,
+    self_weight  NUMERIC(10, 3) NOT NULL, -- Precision for weight
+    is_active    BOOLEAN     DEFAULT TRUE,
+    sort_order   INTEGER        NOT NULL,
+    created_at   TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at   TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_spool_md_spool_number ON size_md (spool_number);
+
+CREATE TABLE size_md
+(
+    id         BIGSERIAL PRIMARY KEY,
+    full_name  VARCHAR(50)    NOT NULL, -- val+uom
+    val        NUMERIC(15, 4) NOT NULL, -- Stores: 1.00 - value
+    uom        VARCHAR(10)    NOT NULL, -- Stores: 'Sq.MM' -- unit of measure
+    sort_order INTEGER        NOT NULL,
+    category   VARCHAR(50),             --MMH/RBD etc
+    is_active  BOOLEAN     DEFAULT TRUE,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT uq_size_md_code_category UNIQUE (full_name, category)
+);
+
+-- Index for fast filtering by category and active status
+CREATE INDEX idx_size_md_lookup ON size_md (category, is_active);
+
+
+CREATE TABLE wire_md
+(
+    id         BIGSERIAL PRIMARY KEY,
+    full_name  VARCHAR(50)    NOT NULL, -- e.g; 7 Wires
+    val        NUMERIC(15, 4) NOT NULL, -- Stores: 1.00 - value
+    uom        VARCHAR(10)    NOT NULL, -- Stores: 'calipers/micrometer' -- unit of measure
+    sort_order INTEGER        NOT NULL,
+    category   VARCHAR(50),             -- MMH/RBD etc
+    is_active  BOOLEAN     DEFAULT TRUE,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT uq_size_md_code_category UNIQUE (name, category)
+);
+
+-- Index for fast filtering by category and active status
+CREATE INDEX idx_wire_md_cat ON size_md (category, is_active);
+CREATE INDEX idx_wire_md_full_name ON size_md (full_name, is_active);
+CREATE INDEX idx_wire_md_val_uom ON size_md (val, uom, is_active);
+
+CREATE TABLE color_md
+(
+    id         BIGSERIAL PRIMARY KEY,
+    name       VARCHAR(100) NOT NULL UNIQUE,
+    code       VARCHAR(50)  NOT NULL UNIQUE,
+    hex_code   VARCHAR(7), -- Format: #FFFFFF
+    is_active  BOOLEAN     DEFAULT TRUE,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Index on code for fast lookup in your Java services
+CREATE INDEX idx_color_name ON color_master (name);
+
+CREATE TABLE bobbin_md
+(
+    id            BIGSERIAL PRIMARY KEY,
+    name          VARCHAR(255) NOT NULL UNIQUE,
+    code          VARCHAR(50)  NOT NULL UNIQUE,
+    bobbin_number INTEGER      NOT NULL UNIQUE,
+    is_active     BOOLEAN     DEFAULT TRUE,
+    sort_order    INTEGER      NOT NULL,
+    created_at    TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at    TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_bobbin_md_bobbin_number ON color_master (bobbin_number);
+
+CREATE TABLE pallet_table_md
+(
+    id            BIGSERIAL PRIMARY KEY,
+    name          VARCHAR(255) NOT NULL UNIQUE,
+    code          VARCHAR(50)  NOT NULL UNIQUE,
+    pallet_number INTEGER      NOT NULL UNIQUE,
+    is_active     BOOLEAN     DEFAULT TRUE,
+    sort_order    INTEGER      NOT NULL,
+    created_at    TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at    TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_bobbin_md_pallet_number ON color_master (pallet_number);
+
+
+CREATE TABLE uom_md
+(
+    id                BIGSERIAL PRIMARY KEY,
+    name              VARCHAR(100)    NOT NULL,        -- Meter , LENGTH_TO_WEIGHT
+    code              VARCHAR(20)     NOT NULL UNIQUE, -- M
+    category          VARCHAR(50)     NOT NULL,        -- LENGTH /  AREA / WEIGHT
+    conversion_factor NUMERIC(19, 10) NOT NULL DEFAULT 1.0,
+    formula           VARCHAR(255)    NOT NULL,
+    decimal_places    INTEGER                  DEFAULT 4,
+    is_active         BOOLEAN                  DEFAULT TRUE,
+    created_at        TIMESTAMPTZ              DEFAULT CURRENT_TIMESTAMP,
+    updated_at        TIMESTAMPTZ              DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Indexing category for faster filtered dropdowns in the UI
+CREATE INDEX idx_uom_lookup ON uom_master (category, is_active);
+
