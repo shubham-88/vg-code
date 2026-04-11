@@ -2,8 +2,8 @@
 CREATE TABLE business_units
 (
     id         BIGSERIAL PRIMARY KEY,
-    code       VARCHAR(20)  NOT NULL UNIQUE,
-    name       VARCHAR(255) NOT NULL UNIQUE,
+    code       VARCHAR(20)  NOT NULL,
+    name       VARCHAR(255) NOT NULL,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
@@ -14,9 +14,9 @@ CREATE UNIQUE INDEX idx_business_units_name ON business_units (name);
 CREATE TABLE users
 (
     id         BIGSERIAL PRIMARY KEY,
-    email      VARCHAR(255) UNIQUE NOT NULL,
-    code       VARCHAR(255) UNIQUE NOT NULL,
-    password   VARCHAR(255)        NOT NULL,
+    email      VARCHAR(255) NOT NULL,
+    code       VARCHAR(255) NOT NULL,
+    password   VARCHAR(255) NOT NULL,
     enabled    BOOLEAN     DEFAULT TRUE,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
@@ -62,53 +62,18 @@ CREATE TABLE roles_privileges
     CONSTRAINT fk_privilege_rel FOREIGN KEY (privilege_id) REFERENCES privileges (id) ON DELETE CASCADE
 );
 
---Store form templetes - used to store diffrent locations form staructure
-CREATE TABLE form_template
-(
-    id         BIGSERIAL PRIMARY KEY,
-    name       VARCHAR(255) NOT NULL,
-    loc_id     BIGINT       NOT NULL,
-    attributes JSONB        NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT uq_form_template_name_loc UNIQUE (name, loc_id),
-    CONSTRAINT fk_form_template_location
-        FOREIGN KEY (loc_id)
-            REFERENCES locations (id)
-
-);
-
-CREATE TABLE items
-(
-    id         BIGSERIAL PRIMARY KEY,
-    name       VARCHAR(255) NOT NULL,
-    loc_id     BIGINT       NOT NULL,
-    attributes JSONB        NOT NULL, --  FIELD_NAME, FIELD_VALUE
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT fk_item_location FOREIGN KEY (loc_id) REFERENCES location (id)
-);
-CREATE INDEX idx_item_attr_path_ops ON item USING GIN (attributes jsonb_path_ops);
-
--- Indexing the JSONB column for faster lookups
-CREATE INDEX idx_form_template_attr ON form_template USING GIN (attributes);
-CREATE INDEX idx_form_template_name ON form_template (name);
-CREATE INDEX idx_form_template_loc_id ON form_template (loc_id);
-
 -- Stores Location types - BASE_LOC-1, SUB_LOCATION-2 , SUB_SUB_LOCATION-3
 CREATE TABLE location_type
 (
     id   BIGSERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE,
-    code VARCHAR(20)  NOT NULL UNIQUE
+    name VARCHAR(100) NOT NULL,
+    code VARCHAR(20)  NOT NULL
 );
 
 CREATE INDEX idx_location_type_code ON location_type (code);
 CREATE INDEX idx_location_type_name ON location_type (name);
 
---Stores Locations - Production , SCM , Blade Packing
+--Stores Location - Production , SCM , Blade Packing
 CREATE TABLE location
 (
     id               BIGSERIAL PRIMARY KEY,
@@ -133,6 +98,42 @@ CREATE TABLE location
 CREATE INDEX idx_location_parent ON location (parent_loc_id);
 CREATE INDEX idx_location_name ON location (name);
 CREATE INDEX idx_location_unit_id ON location (unit_id);
+
+
+--Store form templetes - used to store diffrent location form staructure
+CREATE TABLE form_template
+(
+    id         BIGSERIAL PRIMARY KEY,
+    name       VARCHAR(255) NOT NULL,
+    loc_id     BIGINT       NOT NULL,
+    attributes JSONB        NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT uq_form_template_name_loc UNIQUE (name, loc_id),
+    CONSTRAINT fk_form_template_location
+        FOREIGN KEY (loc_id)
+            REFERENCES location (id)
+
+);
+
+CREATE TABLE items
+(
+    id         BIGSERIAL PRIMARY KEY,
+    name       VARCHAR(255) NOT NULL,
+    loc_id     BIGINT       NOT NULL,
+    attributes JSONB        NOT NULL, --  FIELD_NAME, FIELD_VALUE
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_item_location FOREIGN KEY (loc_id) REFERENCES location (id)
+);
+CREATE INDEX idx_item_attr_path_ops ON items USING GIN (attributes jsonb_path_ops);
+
+-- Indexing the JSONB column for faster lookups
+CREATE INDEX idx_form_template_attr ON form_template USING GIN (attributes);
+CREATE INDEX idx_form_template_name ON form_template (name);
+CREATE INDEX idx_form_template_loc_id ON form_template (loc_id);
 
 --Stores form fields types - Dropdown. radio button, input text, text area
 CREATE TABLE form_field_types
@@ -167,7 +168,7 @@ CREATE INDEX idx_data_type_short ON form_field_data_types (name);
 CREATE INDEX idx_type_short ON form_field_types (name);
 
 --Store inspection status , PENDING / APPROVED
-CREATE TABLE inspection_status_md
+CREATE TABLE inspection_status
 (
     id           SERIAL PRIMARY KEY,
     code         VARCHAR(20) UNIQUE NOT NULL, -- e.g., 'PENDING'
@@ -175,7 +176,7 @@ CREATE TABLE inspection_status_md
 );
 
 --Stores basket master data - 1,2,3
-CREATE TABLE basket_md
+CREATE TABLE basket
 (
     id            BIGSERIAL PRIMARY KEY,
     name          VARCHAR(255)   NOT NULL UNIQUE,
@@ -189,10 +190,10 @@ CREATE TABLE basket_md
 );
 
 -- Index for code as it will likely be used in search/barcode lookups
-CREATE INDEX idx_basket_md_basket_number ON basket_md (basket_number);
+CREATE INDEX idx_basket_md_basket_number ON basket (basket_number);
 
 --Stores suppliers master data
-CREATE TABLE supplier_md
+CREATE TABLE supplier
 (
     id         BIGSERIAL PRIMARY KEY,
     name       VARCHAR(255) NOT NULL UNIQUE,
@@ -203,10 +204,10 @@ CREATE TABLE supplier_md
     updated_at TIMESTAMPTZ  NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_supplier_md_code ON supplier_md (code);
-CREATE INDEX idx_supplier_md_name ON supplier_ms (name);
+CREATE INDEX idx_supplier_md_code ON supplier (code);
+CREATE INDEX idx_supplier_md_name ON supplier (name);
 
-CREATE TABLE spool_md
+CREATE TABLE spool
 (
     id           BIGSERIAL PRIMARY KEY,
     name         VARCHAR(255)   NOT NULL UNIQUE,
@@ -219,12 +220,12 @@ CREATE TABLE spool_md
     updated_at   TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_spool_md_spool_number ON size_md (spool_number);
+CREATE INDEX idx_spool_md_spool_number ON spool (spool_number);
 
-CREATE TABLE size_md
+CREATE TABLE size
 (
     id         BIGSERIAL PRIMARY KEY,
-    full_name  VARCHAR(50)    NOT NULL, -- val+uom
+    name       VARCHAR(50)    NOT NULL, -- val+uom
     val        NUMERIC(15, 4) NOT NULL, -- Stores: 1.00 - value
     uom        VARCHAR(10)    NOT NULL, -- Stores: 'Sq.MM' -- unit of measure
     sort_order INTEGER        NOT NULL,
@@ -232,17 +233,17 @@ CREATE TABLE size_md
     is_active  BOOLEAN     DEFAULT TRUE,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT uq_size_md_code_category UNIQUE (full_name, category)
+    CONSTRAINT uq_size_md_code_category UNIQUE (name, category)
 );
 
 -- Index for fast filtering by category and active status
-CREATE INDEX idx_size_md_lookup ON size_md (category, is_active);
+CREATE INDEX idx_size_md_lookup ON size (category, is_active);
 
 
-CREATE TABLE wire_md
+CREATE TABLE wire
 (
     id         BIGSERIAL PRIMARY KEY,
-    full_name  VARCHAR(50)    NOT NULL, -- e.g; 7 Wires
+    name       VARCHAR(50)    NOT NULL, -- e.g; 7 Wires
     val        NUMERIC(15, 4) NOT NULL, -- Stores: 1.00 - value
     uom        VARCHAR(10)    NOT NULL, -- Stores: 'calipers/micrometer' -- unit of measure
     sort_order INTEGER        NOT NULL,
@@ -250,15 +251,15 @@ CREATE TABLE wire_md
     is_active  BOOLEAN     DEFAULT TRUE,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT uq_size_md_code_category UNIQUE (name, category)
+    CONSTRAINT uq_wire_md_code_category UNIQUE (name, category)
 );
 
 -- Index for fast filtering by category and active status
-CREATE INDEX idx_wire_md_cat ON size_md (category, is_active);
-CREATE INDEX idx_wire_md_full_name ON size_md (full_name, is_active);
-CREATE INDEX idx_wire_md_val_uom ON size_md (val, uom, is_active);
+CREATE INDEX idx_wire_md_cat ON wire (category, is_active);
+CREATE INDEX idx_wire_md_full_name ON wire (name, is_active);
+CREATE INDEX idx_wire_md_val_uom ON wire (val, uom, is_active);
 
-CREATE TABLE color_md
+CREATE TABLE color
 (
     id         BIGSERIAL PRIMARY KEY,
     name       VARCHAR(100) NOT NULL UNIQUE,
@@ -270,9 +271,9 @@ CREATE TABLE color_md
 );
 
 -- Index on code for fast lookup in your Java services
-CREATE INDEX idx_color_name ON color_master (name);
+CREATE INDEX idx_color_name ON color (name);
 
-CREATE TABLE bobbin_md
+CREATE TABLE bobbin
 (
     id            BIGSERIAL PRIMARY KEY,
     name          VARCHAR(255) NOT NULL UNIQUE,
@@ -284,9 +285,9 @@ CREATE TABLE bobbin_md
     updated_at    TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_bobbin_md_bobbin_number ON color_master (bobbin_number);
+CREATE INDEX idx_bobbin_md_bobbin_number ON bobbin (bobbin_number);
 
-CREATE TABLE pallet_table_md
+CREATE TABLE pallet_table
 (
     id            BIGSERIAL PRIMARY KEY,
     name          VARCHAR(255) NOT NULL UNIQUE,
@@ -298,10 +299,10 @@ CREATE TABLE pallet_table_md
     updated_at    TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_bobbin_md_pallet_number ON color_master (pallet_number);
+CREATE INDEX idx_pallet_md_pallet_number ON pallet_table (pallet_number);
 
 
-CREATE TABLE uom_md
+CREATE TABLE uom
 (
     id                BIGSERIAL PRIMARY KEY,
     name              VARCHAR(100)    NOT NULL,        -- Meter , LENGTH_TO_WEIGHT
@@ -316,5 +317,55 @@ CREATE TABLE uom_md
 );
 
 -- Indexing category for faster filtered dropdowns in the UI
-CREATE INDEX idx_uom_lookup ON uom_master (category, is_active);
+CREATE INDEX idx_uom_lookup ON uom (category, is_active);
+
+create table raw_material_type
+(
+    id   BIGSERIAL PRIMARY KEY,
+    type VARCHAR(100) NOT NULL
+
+);
+
+create table raw_material
+(
+    id                   BIGSERIAL PRIMARY KEY,
+    name                 VARCHAR(100) NOT NULL, -- Meter , LENGTH_TO_WEIGHT
+    code                 VARCHAR(20)  NOT NULL UNIQUE,
+    raw_material_type_id BIGINT       NOT NULL,
+    CONSTRAINT fk_raw_mat_type FOREIGN KEY (raw_material_type_id) REFERENCES raw_material_type (id)
+);
+
+
+create table pkg_material_type
+(
+    id   BIGSERIAL PRIMARY KEY,
+    type VARCHAR(100) NOT NULL
+
+);
+
+create table pkg_material
+(
+    id                   BIGSERIAL PRIMARY KEY,
+    name                 VARCHAR(100) NOT NULL, -- Meter , LENGTH_TO_WEIGHT
+    code                 VARCHAR(20)  NOT NULL UNIQUE,
+    pkg_material_type_id BIGINT       NOT NULL,
+    CONSTRAINT fk_pkg_mat_type FOREIGN KEY (pkg_material_type_id) REFERENCES pkg_material_type (id)
+);
+
+create table scrap_type
+(
+    id   BIGSERIAL PRIMARY KEY,
+    type VARCHAR(100) NOT NULL
+
+);
+
+create table scrap
+(
+    id            BIGSERIAL PRIMARY KEY,
+    name          VARCHAR(100) NOT NULL, -- Meter , LENGTH_TO_WEIGHT
+    code          VARCHAR(20)  NOT NULL UNIQUE,
+    scrap_type_id BIGINT       NOT NULL,
+    CONSTRAINT fk_scrap_mat_type FOREIGN KEY (scrap_type_id) REFERENCES scrap_type (id)
+
+);
 
