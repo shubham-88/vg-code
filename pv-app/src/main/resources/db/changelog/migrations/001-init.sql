@@ -153,6 +153,22 @@ CREATE TABLE form_field_data_types
     description VARCHAR(255)
 );
 
+create table form_field
+(
+    id          BIGSERIAL PRIMARY KEY,
+    name        VARCHAR(50) NOT NULL UNIQUE,
+    field_type   BIGINT       NOT NULL,
+    field_data_type BIGINT       NOT NULL,
+    required BOOLEAN NOT NULL DEFAULT FALSE,
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    label VARCHAR(50)  ,
+    placeholder VARCHAR(50) ,
+    default_value VARCHAR(50) ,
+    display_order INTEGER DEFAULT 0,
+    master BIGINT default -1,
+    CONSTRAINT fk_form_field_type FOREIGN KEY (field_type) REFERENCES form_field_types (id),
+    CONSTRAINT fk_form_field_data_type FOREIGN KEY (field_data_type) REFERENCES form_field_data_types (id)
+);
 --Stores all available master data in the system - Basket type, Spool , Bobbin
 CREATE TABLE master_data_registry
 (

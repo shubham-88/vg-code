@@ -3,7 +3,7 @@ package org.vg.pv.app.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "form_field_data_types", schema = "postgres-vg-sc1")
+@Table(name = "form_field_data_types")
 public class FormFieldDataType {
 
     @Id

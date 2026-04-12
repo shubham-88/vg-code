@@ -6,7 +6,7 @@ import org.hibernate.type.SqlTypes;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "form_template", schema = "postgres-vg-sc1")
+@Table(name = "form_template")
 public class FormTemplate {
 
     @Id

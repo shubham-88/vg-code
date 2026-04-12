@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users", schema = "postgres-vg-sc1")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -33,7 +33,6 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_roles",
-            schema = "postgres-vg-sc1",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )

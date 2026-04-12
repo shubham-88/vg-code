@@ -6,7 +6,7 @@ import org.hibernate.type.SqlTypes;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "items", schema = "postgres-vg-sc1")
+@Table(name = "items")
 public class Item {
 
     @Id

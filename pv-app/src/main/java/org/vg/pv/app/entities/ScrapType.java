@@ -3,7 +3,7 @@ package org.vg.pv.app.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "scrap_type", schema = "postgres-vg-sc1")
+@Table(name = "scrap_type")
 public class ScrapType {
 
     @Id

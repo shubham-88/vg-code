@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "spool", schema = "postgres-vg-sc1")
+@Table(name = "spool")
 public class Spool {
 
     @Id

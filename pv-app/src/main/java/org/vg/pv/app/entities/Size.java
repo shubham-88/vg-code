@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "size", schema = "postgres-vg-sc1",
+@Table(name = "size",
        uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "category"})})
 public class Size {
 

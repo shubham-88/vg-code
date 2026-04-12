@@ -3,7 +3,7 @@ package org.vg.pv.app.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "master_data_registry", schema = "postgres-vg-sc1")
+@Table(name = "master_data_registry")
 public class MasterDataRegistry {
 
     @Id

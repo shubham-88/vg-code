@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "bobbin", schema = "postgres-vg-sc1")
+@Table(name = "bobbin")
 public class Bobbin {
 
     @Id

@@ -3,7 +3,7 @@ package org.vg.pv.app.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "raw_material_type", schema = "postgres-vg-sc1")
+@Table(name = "raw_material_type")
 public class RawMaterialType {
 
     @Id

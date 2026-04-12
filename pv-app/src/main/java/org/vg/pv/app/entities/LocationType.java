@@ -3,7 +3,7 @@ package org.vg.pv.app.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "location_type", schema = "postgres-vg-sc1")
+@Table(name = "location_type")
 public class LocationType {
 
     @Id

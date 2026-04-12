@@ -3,7 +3,7 @@ package org.vg.pv.app.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "inspection_status", schema = "postgres-vg-sc1")
+@Table(name = "inspection_status")
 public class InspectionStatus {
 
     @Id
