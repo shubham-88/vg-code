@@ -1,4 +1,4 @@
-package org.vg.pv.pv_app;
+package org.vg.pv.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
