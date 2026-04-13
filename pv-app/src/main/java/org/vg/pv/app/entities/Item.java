@@ -3,7 +3,10 @@ package org.vg.pv.app.entities;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import org.vg.pv.app.jsnobject.FormField;
+
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "items")
@@ -22,7 +25,7 @@ public class Item {
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "attributes", nullable = false)
-    private String attributes;
+    private List<FormField> attributes;
 
     @Column(name = "created_at")
     private OffsetDateTime createdAt;
@@ -54,11 +57,11 @@ public class Item {
         this.location = location;
     }
 
-    public String getAttributes() {
+    public List<FormField> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(String attributes) {
+    public void setAttributes(List<FormField> attributes) {
         this.attributes = attributes;
     }
 
