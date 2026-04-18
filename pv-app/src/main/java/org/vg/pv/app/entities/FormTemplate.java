@@ -4,12 +4,11 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.vg.pv.app.jsnobject.FormField;
-import java.time.OffsetDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "form_template")
-public class FormTemplate {
+public class FormTemplate extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +24,6 @@ public class FormTemplate {
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "attributes", nullable = false)
     private List<FormField> attributes;
-
-    @Column(name = "created_at")
-    private OffsetDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private OffsetDateTime updatedAt;
 
     public Long getId() {
         return id;
@@ -62,21 +55,5 @@ public class FormTemplate {
 
     public void setAttributes(List<FormField> attributes) {
         this.attributes = attributes;
-    }
-
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

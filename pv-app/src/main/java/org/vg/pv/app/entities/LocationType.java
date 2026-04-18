@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "location_type")
-public class LocationType {
+public class LocationType extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +15,10 @@ public class LocationType {
 
     @Column(nullable = false, length = 20)
     private String code;
+
+    // Default no-argument constructor for JPA and Jackson deserialization
+    public LocationType() {
+    }
 
     public Long getId() {
         return id;

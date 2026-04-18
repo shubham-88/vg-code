@@ -5,12 +5,11 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.vg.pv.app.jsnobject.FormField;
 
-import java.time.OffsetDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "items")
-public class Item {
+public class Item extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,12 +25,6 @@ public class Item {
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "attributes", nullable = false)
     private List<FormField> attributes;
-
-    @Column(name = "created_at")
-    private OffsetDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private OffsetDateTime updatedAt;
 
     public Long getId() {
         return id;
@@ -63,21 +56,5 @@ public class Item {
 
     public void setAttributes(List<FormField> attributes) {
         this.attributes = attributes;
-    }
-
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

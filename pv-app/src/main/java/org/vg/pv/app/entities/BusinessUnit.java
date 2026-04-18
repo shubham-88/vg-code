@@ -5,7 +5,7 @@ import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "business_units")
-public class BusinessUnit {
+public class BusinessUnit extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,11 +17,9 @@ public class BusinessUnit {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(name = "created_at")
-    private OffsetDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private OffsetDateTime updatedAt;
+    // Default no-argument constructor for JPA and Jackson deserialization
+    public BusinessUnit() {
+    }
 
     public Long getId() {
         return id;

@@ -1,0 +1,31 @@
+-- Liquibase Migration: Add version column for optimistic locking
+-- Target Schema: postgres-vg-sc1
+
+ALTER TABLE "postgres-vg-sc1".business_units ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".users ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".roles ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".privileges ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".location_type ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".location ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".form_template ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".items ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".form_field_types ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".form_field_data_types ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".form_field ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".master_data_registry ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".inspection_status ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".basket ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".supplier ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".spool ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".size ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".wire ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".color ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".bobbin ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".pallet_table ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".uom ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".raw_material_type ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".raw_material ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".pkg_material_type ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".pkg_material ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".scrap_type ADD COLUMN version BIGINT DEFAULT 0;
+ALTER TABLE "postgres-vg-sc1".scrap ADD COLUMN version BIGINT DEFAULT 0;

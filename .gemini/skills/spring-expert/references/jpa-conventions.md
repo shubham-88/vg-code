@@ -18,6 +18,7 @@ Every entity should have:
 - `updatedAt` (`LocalDateTime`)
 - Managed manually in the service layer (this project does not use `@CreatedDate` / `@LastModifiedDate` annotations).
 
+
 ### No Lombok
 
 Manually implement:
@@ -36,3 +37,6 @@ Manually implement:
 - Use Spring Data JPA Repositories (interfaces extending `JpaRepository`).
 - Prefer derived query methods where possible.
 - Use `@Query` for complex queries.
+
+## Super class
+- must implement Serializable
