@@ -1,0 +1,127 @@
+[
+  {
+    "name": "Text",
+    "shortName": "text",
+    "description": "A single-line text field."
+  },
+  {
+    "name": "Password",
+    "shortName": "password",
+    "description": "A single-line text field where the characters are masked."
+  },
+  {
+    "name": "Checkbox",
+    "shortName": "checkbox",
+    "description": "A checkbox that can be toggled on or off."
+  },
+  {
+    "name": "Radio",
+    "shortName": "radio",
+    "description": "A radio button for selecting one option from a set."
+  },
+  {
+    "name": "Button",
+    "shortName": "button",
+    "description": "A clickable button."
+  },
+  {
+    "name": "Date",
+    "shortName": "date",
+    "description": "A control for entering a date (year, month, and day)."
+  },
+  {
+    "name": "Datetime Local",
+    "shortName": "datetime-local",
+    "description": "A control for entering a date and time, with no time zone."
+  },
+  {
+    "name": "Email",
+    "shortName": "email",
+    "description": "A field for entering an e-mail address."
+  },
+  {
+    "name": "File",
+    "shortName": "file",
+    "description": "A control that lets the user select a file."
+  },
+  {
+    "name": "Hidden",
+    "shortName": "hidden",
+    "description": "A control that is not displayed but whose value is submitted to the server."
+  },
+  {
+    "name": "Image",
+    "shortName": "image",
+    "description": "A graphical submit button."
+  },
+  {
+    "name": "Month",
+    "shortName": "month",
+    "description": "A control for entering a month and year."
+  },
+  {
+    "name": "Number",
+    "shortName": "number",
+    "description": "A control for entering a number."
+  },
+  {
+    "name": "Range",
+    "shortName": "range",
+    "description": "A control for entering a number whose exact value is not important (like a slider)."
+  },
+  {
+    "name": "Reset",
+    "shortName": "reset",
+    "description": "A button that resets all form controls to their initial values."
+  },
+  {
+    "name": "Search",
+    "shortName": "search",
+    "description": "A single-line text field for entering search strings."
+  },
+  {
+    "name": "Submit",
+    "shortName": "submit",
+    "description": "A button that submits the form."
+  },
+  {
+    "name": "Tel",
+    "shortName": "tel",
+    "description": "A control for entering a telephone number."
+  },
+  {
+    "name": "Time",
+    "shortName": "time",
+    "description": "A control for entering a time (hour, minute, second, and fraction of a second)."
+  },
+  {
+    "name": "URL",
+    "shortName": "url",
+    "description": "A field for entering a URL."
+  },
+  {
+    "name": "Week",
+    "shortName": "week",
+    "description": "A control for entering a date consisting of a week-year number and a week number."
+  },
+  {
+    "name": "Color",
+    "shortName": "color",
+    "description": "A color picker."
+  },
+  {
+    "name": "Textarea",
+    "shortName": "textarea",
+    "description": "A multi-line text input control."
+  },
+  {
+    "name": "Select",
+    "shortName": "select",
+    "description": "A drop-down list."
+  },
+  {
+    "name": "Multi-Select",
+    "shortName": "multi-select",
+    "description": "A multi-select list."
+  }
+]

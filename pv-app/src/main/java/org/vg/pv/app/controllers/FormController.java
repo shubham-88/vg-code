@@ -10,12 +10,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/forms")
-public class PVFormController {
+public class FormController {
 
     private final FormTemplateService formTemplateService;
 
     @Autowired
-    public PVFormController(FormTemplateService formTemplateService) {
+    public FormController(FormTemplateService formTemplateService) {
         this.formTemplateService = formTemplateService;
     }
 

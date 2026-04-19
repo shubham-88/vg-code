@@ -1,0 +1,97 @@
+[
+  {
+    "name": "java.lang.Byte",
+    "shortName": "Byte",
+    "description": "Standard byte data."
+  },
+  {
+    "name": "java.lang.Short",
+    "shortName": "Short",
+    "description": "Standard short data."
+  },
+  {
+    "name": "java.lang.Integer",
+    "shortName": "int",
+    "description": "Whole numbers without decimal points."
+  },
+  {
+    "name": "java.lang.Long",
+    "shortName": "long",
+    "description": "Numbers with decimal precision."
+  },
+  {
+    "name": "Decimal",
+    "shortName": "DEC",
+    "description": "Numbers with decimal precision."
+  },
+  {
+    "name": "java.lang.Float",
+    "shortName": "float",
+    "description": "Numbers with decimal precision."
+  },
+  {
+    "name": "java.lang.Double",
+    "shortName": "double",
+    "description": "Numbers with decimal precision."
+  },
+  {
+    "name": "java.lang.Boolean",
+    "shortName": "boolean",
+    "description": "True or false values."
+  },
+  {
+    "name": "java.lang.Char",
+    "shortName": "char",
+    "description": "Character values."
+  },
+  {
+    "name": "java.lang.Date",
+    "shortName": "date",
+    "description": "Calendar date values."
+  },
+  {
+    "name": "java.time.LocalDate",
+    "shortName": "LocalDate",
+    "description": "Calendar date values."
+  },
+  {
+    "name": "java.time.LocalTime",
+    "shortName": "LocalTime",
+    "description": "Calendar date values."
+  },
+  {
+    "name": "java.time.LocalDateTime",
+    "shortName": "LocalDateTime",
+    "description": "Calendar date values."
+  },
+  {
+    "name": "java.lang.String",
+    "shortName": "String",
+    "description": "Standard String value"
+  },
+  {
+    "name": "java.lang.Enum",
+    "shortName": "enum",
+    "description": "Standard Enum value"
+  },
+  {
+    "name": "java.util.List",
+    "shortName": "List",
+    "description": "Standard List value"
+  },
+  {
+    "name": "java.util.Arrays",
+    "shortName": "Array",
+    "description": "Standard Array value"
+  },
+  {
+    "name": "java.lang.Object",
+    "shortName": "Object",
+    "description": "Standard Object value"
+  },
+  {
+    "name": "org.vg.pv.app.types.CustomTypes",
+    "shortName": "type",
+    "description": "Standard Object value"
+  }
+]
