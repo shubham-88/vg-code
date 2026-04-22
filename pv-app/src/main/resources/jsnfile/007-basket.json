@@ -1,0 +1,83 @@
+[
+  {
+    "name": "Standard Basket A1",
+    "code": "BSK-A1",
+    "basketNumber": 101,
+    "selfWeight": 15.500,
+    "isActive": true,
+    "sortOrder": 1
+  },
+  {
+    "name": "Heavy Duty Basket B2",
+    "code": "BSK-B2",
+    "basketNumber": 102,
+    "selfWeight": 25.750,
+    "isActive": true,
+    "sortOrder": 2
+  },
+  {
+    "name": "Heavy Duty Basket B3",
+    "code": "BSK-B3",
+    "basketNumber": 103,
+    "selfWeight": 35.750,
+    "isActive": true,
+    "sortOrder": 3
+  },
+  {
+    "name": "Heavy Duty Basket B4",
+    "code": "BSK-B4",
+    "basketNumber": 104,
+    "selfWeight": 40.750,
+    "isActive": true,
+    "sortOrder": 4
+  },
+  {
+    "name": "Heavy Duty Basket B5",
+    "code": "BSK-B5",
+    "basketNumber": 105,
+    "selfWeight": 45.750,
+    "isActive": true,
+    "sortOrder": 5
+  },
+  {
+    "name": "Heavy Duty Basket B6",
+    "code": "BSK-B6",
+    "basketNumber": 106,
+    "selfWeight": 55.750,
+    "isActive": true,
+    "sortOrder": 6
+  },
+  {
+    "name": "Heavy Duty Basket B7",
+    "code": "BSK-B7",
+    "basketNumber": 107,
+    "selfWeight": 66.750,
+    "isActive": true,
+    "sortOrder": 7
+  },
+  {
+    "name": "Heavy Duty Basket B8",
+    "code": "BSK-B8",
+    "basketNumber": 108,
+    "selfWeight": 77.750,
+    "isActive": true,
+    "sortOrder": 8
+  },
+  {
+    "name": "Heavy Duty Basket B9",
+    "code": "BSK-B9",
+    "basketNumber": 109,
+    "selfWeight": 88.750,
+    "isActive": true,
+    "sortOrder": 9
+  },
+  {
+    "name": "Heavy Duty Basket B10",
+    "code": "BSK-B10",
+    "basketNumber": 110,
+    "selfWeight": 150.750,
+    "isActive": true,
+    "sortOrder": 10
+  }
+
+]

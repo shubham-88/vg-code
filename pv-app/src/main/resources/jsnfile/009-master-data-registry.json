@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Basket",
+    "tableName": "basket"
+  },
+  {
+    "name": "Supplier",
+    "tableName": "supplier"
+  },
+  {
+    "name": "Location",
+    "tableName": "location"
+  }
+]

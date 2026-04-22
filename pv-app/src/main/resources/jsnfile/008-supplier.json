@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Acme Manufacturing",
+    "code": "SUP-ACME",
+    "isActive": true,
+    "sortOrder": 1
+  },
+  {
+    "name": "Global Supplies Co.",
+    "code": "SUP-GLOB",
+    "isActive": true,
+    "sortOrder": 2
+  }
+]
