@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.vg.pv.app.jsnobject.FormField;
+import org.vg.pv.app.jsnobject.GridHeader;
 import java.util.List;
 
 @Entity
@@ -24,6 +25,13 @@ public class FormTemplate extends AbstractEntity {
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "attributes", nullable = false)
     private List<FormField> attributes;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "headers")
+    private List<GridHeader> headers;
+
+    public FormTemplate() {
+    }
 
     public Long getId() {
         return id;
@@ -55,5 +63,13 @@ public class FormTemplate extends AbstractEntity {
 
     public void setAttributes(List<FormField> attributes) {
         this.attributes = attributes;
+    }
+
+    public List<GridHeader> getHeaders() {
+        return headers;
+    }
+
+    public void setHeaders(List<GridHeader> headers) {
+        this.headers = headers;
     }
 }

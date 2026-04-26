@@ -1,0 +1,415 @@
+{
+  "info": {
+    "_postman_id": "52ba9938-e40b-45c9-9307-f801a594ff8c",
+    "name": "PV_APP",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "4588990"
+  },
+  "item": [
+    {
+      "name": "create_form_template",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Incoming Inspection Template\",\r\n  \"location\": {\r\n    \"id\": 10,\r\n    \"name\": \"Main Warehouse\",\r\n    \"locationType\": {\r\n      \"id\": 1,\r\n      \"name\": \"Storage\"\r\n    },\r\n    \"businessUnit\": {\r\n      \"id\": 5,\r\n      \"name\": \"Electronics Division\"\r\n    }\r\n  },\r\n  \"attributes\": [\r\n    {\r\n      \"id\": 101,\r\n      \"name\": \"batch_number\",\r\n      \"fieldType\": 1,\r\n      \"fieldDataType\": 2,\r\n      \"required\": true,\r\n      \"active\": true,\r\n      \"label\": \"Batch Number\",\r\n      \"placeholder\": \"Enter batch number\",\r\n      \"defaultValue\": \"\",\r\n      \"displayOrder\": 1,\r\n      \"master\": null\r\n    },\r\n    {\r\n      \"id\": 102,\r\n      \"name\": \"supplier_id\",\r\n      \"fieldType\": 3,\r\n      \"fieldDataType\": 1,\r\n      \"required\": true,\r\n      \"active\": true,\r\n      \"label\": \"Supplier\",\r\n      \"placeholder\": \"Select supplier\",\r\n      \"defaultValue\": \"0\",\r\n      \"displayOrder\": 2,\r\n      \"master\": 500\r\n    },\r\n    {\r\n      \"id\": 103,\r\n      \"name\": \"inspection_date\",\r\n      \"fieldType\": 1,\r\n      \"fieldDataType\": 4,\r\n      \"required\": false,\r\n      \"active\": true,\r\n      \"label\": \"Date of Inspection\",\r\n      \"placeholder\": \"\",\r\n      \"defaultValue\": \"2026-04-13\",\r\n      \"displayOrder\": 3,\r\n      \"master\": null\r\n    }\r\n  ],\r\n  \"createdAt\": \"2026-04-13T10:00:00Z\",\r\n  \"updatedAt\": \"2026-04-13T12:30:00Z\"\r\n}\r\n"
+        },
+        "url": {
+          "raw": "http://localhost:8080/pv-app/api/forms",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pv-app",
+            "api",
+            "forms"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_form_template",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/pv-app/api/forms/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pv-app",
+            "api",
+            "forms",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create_business_unit",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"code\": \"BU_KASHIPUR_001\",\r\n  \"name\": \"Kashipur Unit\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/business-units",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "business-units"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update_business_unit",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"code\": \"BU_KASHIPUR_001\",\r\n  \"name\": \"Kashipur Unit\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/business-units",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "business-units"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete_business_unit",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"code\": \"BU_KASHIPUR_001\",\r\n  \"name\": \"Kashipur Unit\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/business-units",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "business-units"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create_location_type",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Root Location\",\r\n  \"code\": \"ROOT_LOC\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/location-types",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "location-types"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create_location",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Eng\",\r\n  \"locationType\": { \"id\": 1 },\r\n  \"businessUnit\": { \"id\": 1 },\r\n  \"parentLocation\":{\"id\": 2}\r\n}\r\n\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/locations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "locations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_location",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Eng\",\r\n  \"locationType\": { \"id\": 1 },\r\n  \"businessUnit\": { \"id\": 1 },\r\n  \"parentLocation\":{\"id\": 2}\r\n}\r\n\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/locations/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "locations",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create_form_field_data_types",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n  {\r\n    \"name\": \"java.lang.Byte\",\r\n    \"shortName\": \"Byte\",\r\n    \"description\": \"Standard byte data.\"\r\n  },\r\n  {\r\n    \"name\": \"java.lang.Short\",\r\n    \"shortName\": \"Short\",\r\n    \"description\": \"Standard short data.\"\r\n  },\r\n  {\r\n    \"name\": \"java.lang.Integer\",\r\n    \"shortName\": \"int\",\r\n    \"description\": \"Whole numbers without decimal points.\"\r\n  },\r\n  {\r\n    \"name\": \"java.lang.Long\",\r\n    \"shortName\": \"long\",\r\n    \"description\": \"Numbers with decimal precision.\"\r\n  },\r\n  {\r\n    \"name\": \"Decimal\",\r\n    \"shortName\": \"DEC\",\r\n    \"description\": \"Numbers with decimal precision.\"\r\n  },\r\n  {\r\n    \"name\": \"java.lang.Float\",\r\n    \"shortName\": \"float\",\r\n    \"description\": \"Numbers with decimal precision.\"\r\n  },\r\n  {\r\n    \"name\": \"java.lang.Double\",\r\n    \"shortName\": \"double\",\r\n    \"description\": \"Numbers with decimal precision.\"\r\n  },\r\n  {\r\n    \"name\": \"java.lang.Boolean\",\r\n    \"shortName\": \"boolean\",\r\n    \"description\": \"True or false values.\"\r\n  },\r\n  {\r\n    \"name\": \"java.lang.Char\",\r\n    \"shortName\": \"char\",\r\n    \"description\": \"Character values.\"\r\n  },\r\n  {\r\n    \"name\": \"java.lang.Date\",\r\n    \"shortName\": \"date\",\r\n    \"description\": \"Calendar date values.\"\r\n  },\r\n  {\r\n    \"name\": \"java.time.LocalDate\",\r\n    \"shortName\": \"LocalDate\",\r\n    \"description\": \"Calendar date values.\"\r\n  },\r\n  {\r\n    \"name\": \"java.time.LocalTime\",\r\n    \"shortName\": \"LocalTime\",\r\n    \"description\": \"Calendar date values.\"\r\n  },\r\n  {\r\n    \"name\": \"java.time.LocalDateTime\",\r\n    \"shortName\": \"LocalDateTime\",\r\n    \"description\": \"Calendar date values.\"\r\n  },\r\n  {\r\n    \"name\": \"java.lang.String\",\r\n    \"shortName\": \"String\",\r\n    \"description\": \"Standard String value\"\r\n  },\r\n  {\r\n    \"name\": \"java.lang.Enum\",\r\n    \"shortName\": \"enum\",\r\n    \"description\": \"Standard Enum value\"\r\n  },\r\n  {\r\n    \"name\": \"java.util.List\",\r\n    \"shortName\": \"List\",\r\n    \"description\": \"Standard List value\"\r\n  },\r\n  {\r\n    \"name\": \"java.util.Arrays\",\r\n    \"shortName\": \"Array\",\r\n    \"description\": \"Standard Array value\"\r\n  },\r\n  {\r\n    \"name\": \"java.lang.Object\",\r\n    \"shortName\": \"Object\",\r\n    \"description\": \"Standard Object value\"\r\n  },\r\n  {\r\n    \"name\": \"org.vg.pv.app.types.CustomTypes\",\r\n    \"shortName\": \"type\",\r\n    \"description\": \"Standard Object value\"\r\n  }\r\n]\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/form-field-data-types/batch",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "form-field-data-types",
+            "batch"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create_form_field_types",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n  {\r\n    \"name\": \"Text\",\r\n    \"shortName\": \"text\",\r\n    \"description\": \"A single-line text field.\"\r\n  },\r\n  {\r\n    \"name\": \"Password\",\r\n    \"shortName\": \"password\",\r\n    \"description\": \"A single-line text field where the characters are masked.\"\r\n  },\r\n  {\r\n    \"name\": \"Checkbox\",\r\n    \"shortName\": \"checkbox\",\r\n    \"description\": \"A checkbox that can be toggled on or off.\"\r\n  },\r\n  {\r\n    \"name\": \"Radio\",\r\n    \"shortName\": \"radio\",\r\n    \"description\": \"A radio button for selecting one option from a set.\"\r\n  },\r\n  {\r\n    \"name\": \"Button\",\r\n    \"shortName\": \"button\",\r\n    \"description\": \"A clickable button.\"\r\n  },\r\n  {\r\n    \"name\": \"Date\",\r\n    \"shortName\": \"date\",\r\n    \"description\": \"A control for entering a date (year, month, and day).\"\r\n  },\r\n  {\r\n    \"name\": \"Datetime Local\",\r\n    \"shortName\": \"datetime-local\",\r\n    \"description\": \"A control for entering a date and time, with no time zone.\"\r\n  },\r\n  {\r\n    \"name\": \"Email\",\r\n    \"shortName\": \"email\",\r\n    \"description\": \"A field for entering an e-mail address.\"\r\n  },\r\n  {\r\n    \"name\": \"File\",\r\n    \"shortName\": \"file\",\r\n    \"description\": \"A control that lets the user select a file.\"\r\n  },\r\n  {\r\n    \"name\": \"Hidden\",\r\n    \"shortName\": \"hidden\",\r\n    \"description\": \"A control that is not displayed but whose value is submitted to the server.\"\r\n  },\r\n  {\r\n    \"name\": \"Image\",\r\n    \"shortName\": \"image\",\r\n    \"description\": \"A graphical submit button.\"\r\n  },\r\n  {\r\n    \"name\": \"Month\",\r\n    \"shortName\": \"month\",\r\n    \"description\": \"A control for entering a month and year.\"\r\n  },\r\n  {\r\n    \"name\": \"Number\",\r\n    \"shortName\": \"number\",\r\n    \"description\": \"A control for entering a number.\"\r\n  },\r\n  {\r\n    \"name\": \"Range\",\r\n    \"shortName\": \"range\",\r\n    \"description\": \"A control for entering a number whose exact value is not important (like a slider).\"\r\n  },\r\n  {\r\n    \"name\": \"Reset\",\r\n    \"shortName\": \"reset\",\r\n    \"description\": \"A button that resets all form controls to their initial values.\"\r\n  },\r\n  {\r\n    \"name\": \"Search\",\r\n    \"shortName\": \"search\",\r\n    \"description\": \"A single-line text field for entering search strings.\"\r\n  },\r\n  {\r\n    \"name\": \"Submit\",\r\n    \"shortName\": \"submit\",\r\n    \"description\": \"A button that submits the form.\"\r\n  },\r\n  {\r\n    \"name\": \"Tel\",\r\n    \"shortName\": \"tel\",\r\n    \"description\": \"A control for entering a telephone number.\"\r\n  },\r\n  {\r\n    \"name\": \"Time\",\r\n    \"shortName\": \"time\",\r\n    \"description\": \"A control for entering a time (hour, minute, second, and fraction of a second).\"\r\n  },\r\n  {\r\n    \"name\": \"URL\",\r\n    \"shortName\": \"url\",\r\n    \"description\": \"A field for entering a URL.\"\r\n  },\r\n  {\r\n    \"name\": \"Week\",\r\n    \"shortName\": \"week\",\r\n    \"description\": \"A control for entering a date consisting of a week-year number and a week number.\"\r\n  },\r\n  {\r\n    \"name\": \"Color\",\r\n    \"shortName\": \"color\",\r\n    \"description\": \"A color picker.\"\r\n  },\r\n  {\r\n    \"name\": \"Textarea\",\r\n    \"shortName\": \"textarea\",\r\n    \"description\": \"A multi-line text input control.\"\r\n  },\r\n  {\r\n    \"name\": \"Select\",\r\n    \"shortName\": \"select\",\r\n    \"description\": \"A drop-down list.\"\r\n  },\r\n  {\r\n    \"name\": \"Multi-Select\",\r\n    \"shortName\": \"multi-select\",\r\n    \"description\": \"A multi-select list.\"\r\n  }\r\n]\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/form-field-types/batch",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "form-field-types",
+            "batch"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create_basket",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n  {\r\n    \"name\": \"Standard Basket A1\",\r\n    \"code\": \"BSK-A1\",\r\n    \"basketNumber\": 101,\r\n    \"selfWeight\": 15.500,\r\n    \"isActive\": true,\r\n    \"sortOrder\": 1\r\n  },\r\n  {\r\n    \"name\": \"Heavy Duty Basket B2\",\r\n    \"code\": \"BSK-B2\",\r\n    \"basketNumber\": 102,\r\n    \"selfWeight\": 25.750,\r\n    \"isActive\": true,\r\n    \"sortOrder\": 2\r\n  },\r\n  {\r\n    \"name\": \"Heavy Duty Basket B3\",\r\n    \"code\": \"BSK-B3\",\r\n    \"basketNumber\": 103,\r\n    \"selfWeight\": 35.750,\r\n    \"isActive\": true,\r\n    \"sortOrder\": 3\r\n  },\r\n  {\r\n    \"name\": \"Heavy Duty Basket B4\",\r\n    \"code\": \"BSK-B4\",\r\n    \"basketNumber\": 104,\r\n    \"selfWeight\": 40.750,\r\n    \"isActive\": true,\r\n    \"sortOrder\": 4\r\n  },\r\n  {\r\n    \"name\": \"Heavy Duty Basket B5\",\r\n    \"code\": \"BSK-B5\",\r\n    \"basketNumber\": 105,\r\n    \"selfWeight\": 45.750,\r\n    \"isActive\": true,\r\n    \"sortOrder\": 5\r\n  },\r\n  {\r\n    \"name\": \"Heavy Duty Basket B6\",\r\n    \"code\": \"BSK-B6\",\r\n    \"basketNumber\": 106,\r\n    \"selfWeight\": 55.750,\r\n    \"isActive\": true,\r\n    \"sortOrder\": 6\r\n  },\r\n  {\r\n    \"name\": \"Heavy Duty Basket B7\",\r\n    \"code\": \"BSK-B7\",\r\n    \"basketNumber\": 107,\r\n    \"selfWeight\": 66.750,\r\n    \"isActive\": true,\r\n    \"sortOrder\": 7\r\n  },\r\n  {\r\n    \"name\": \"Heavy Duty Basket B8\",\r\n    \"code\": \"BSK-B8\",\r\n    \"basketNumber\": 108,\r\n    \"selfWeight\": 77.750,\r\n    \"isActive\": true,\r\n    \"sortOrder\": 8\r\n  },\r\n  {\r\n    \"name\": \"Heavy Duty Basket B9\",\r\n    \"code\": \"BSK-B9\",\r\n    \"basketNumber\": 109,\r\n    \"selfWeight\": 88.750,\r\n    \"isActive\": true,\r\n    \"sortOrder\": 9\r\n  },\r\n  {\r\n    \"name\": \"Heavy Duty Basket B10\",\r\n    \"code\": \"BSK-B10\",\r\n    \"basketNumber\": 110,\r\n    \"selfWeight\": 150.750,\r\n    \"isActive\": true,\r\n    \"sortOrder\": 10\r\n  }\r\n\r\n]\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/baskets/batch",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "baskets",
+            "batch"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create_supplier",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n  {\r\n    \"name\": \"Aurubis AG\",\r\n    \"code\": \"SUP-AURU\",\r\n    \"category\": \"Metals\",\r\n    \"specialty\": \"Copper Rod & Cathode\",\r\n    \"isActive\": true,\r\n    \"sortOrder\": 1\r\n  },\r\n  {\r\n    \"name\": \"Shakun Polymers Ltd\",\r\n    \"code\": \"SUP-SHAK\",\r\n    \"category\": \"Polymers\",\r\n    \"specialty\": \"Halogen-Free Flame Retardant Compounds\",\r\n    \"isActive\": true,\r\n    \"sortOrder\": 2\r\n  },\r\n  {\r\n    \"name\": \"Southwire Company\",\r\n    \"code\": \"SUP-SOUT\",\r\n    \"category\": \"Metals/Finished Goods\",\r\n    \"specialty\": \"SCR Copper Rod Systems\",\r\n    \"isActive\": true,\r\n    \"sortOrder\": 3\r\n  },\r\n  {\r\n    \"name\": \"SMS Group GmbH\",\r\n    \"code\": \"SUP-SMS-G\",\r\n    \"category\": \"Machinery\",\r\n    \"specialty\": \"Copper Wire Rod Plants\",\r\n    \"isActive\": true,\r\n    \"sortOrder\": 4\r\n  },\r\n  {\r\n    \"name\": \"Borealis AG\",\r\n    \"code\": \"SUP-BORE\",\r\n    \"category\": \"Polymers\",\r\n    \"specialty\": \"XLPE Insulation Materials\",\r\n    \"isActive\": true,\r\n    \"sortOrder\": 5\r\n  },\r\n  {\r\n    \"name\": \"Hindalco Industries\",\r\n    \"code\": \"SUP-HIND\",\r\n    \"category\": \"Metals\",\r\n    \"specialty\": \"Aluminum Rods & Foil\",\r\n    \"isActive\": true,\r\n    \"sortOrder\": 6\r\n  }\r\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/suppliers/batch",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "suppliers",
+            "batch"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create_msterdata_register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n  {\r\n    \"name\": \"Basket\",\r\n    \"tableName\": \"basket\"\r\n  },\r\n  {\r\n    \"name\": \"Supplier\",\r\n    \"tableName\": \"supplier\"\r\n  },\r\n  {\r\n    \"name\": \"Location\",\r\n    \"tableName\": \"location\"\r\n  }\r\n]\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/master-data-registry/batch",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "master-data-registry",
+            "batch"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update_location",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Production\",\r\n  \"locationType\": { \"id\": 2 },\r\n  \"businessUnit\": { \"id\": 1 }\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/locations/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "locations",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
