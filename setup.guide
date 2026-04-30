@@ -1,0 +1,78 @@
+# Developer Setup Guide: vg-code
+
+Welcome to the `vg-code` backend project. This guide will help you set up your local development environment.
+
+## 1. Prerequisites
+
+Ensure you have the following installed:
+- **Java 21 JDK** (Required for the modern Spring Boot 4 ecosystem)
+- **Podman** (or Docker) for running the local database
+- **Maven** (The project includes a `./mvnw` wrapper, so a global install is optional)
+
+## 2. Infrastructure Setup (PostgreSQL)
+
+The project uses PostgreSQL 16+. A Podman-compose configuration is provided for local development.
+
+1.  Navigate to the podman directory:
+    ```powershell
+    cd pv-app/src/main/resources/podman-files/
+    ```
+2.  Start the database container:
+    ```powershell
+    podman-compose up -d
+    ```
+    *Note: The database is initialized with user `postgres-vg` and password `postgres-vg`.*
+
+## 3. Building the Project
+
+From the project root directory, run:
+
+```powershell
+./mvnw clean install
+```
+
+**Note:** If you encounter tests failing due to `TimeZone` discrepancies in your environment, you can skip tests for a faster initial build:
+```powershell
+./mvnw clean install -DskipTests
+```
+
+## 4. Running the Application
+
+Navigate to the `pv-app` module and run the Spring Boot application:
+
+```powershell
+cd pv-app
+./mvnw spring-boot:run
+```
+
+The API will be available at `http://localhost:8080/api/`.
+
+## 5. Development Conventions
+
+To maintain consistency across the codebase, please follow these rules:
+
+### Persistence & JPA
+- **Base Class:** All JPA entities MUST extend `AbstractEntity`. This provides:
+  - `Serializable` implementation.
+  - `@Version` field for optimistic locking (initialized to `0L`).
+  - `createdAt` and `updatedAt` audit fields.
+- **No Lombok:** Do not add Lombok to the project. Manually generate:
+  - No-argument constructors (required for Jackson/JPA).
+  - Getters and Setters.
+  - Standard constructors as needed.
+
+### Database Migrations
+- **Liquibase:** Never modify the database schema manually. 
+- Create new SQL migration files in `pv-app/src/main/resources/db/changelog/migrations/`.
+- Register new scripts in `pv-app/src/main/resources/db/changelog/db.changelog-migration.xml`.
+
+### Service Layer
+- **Transactions:** Use `@Transactional` at the class level for all service implementations.
+- **Audit Management:** Manually set `createdAt` and `updatedAt` timestamps in the service layer using `OffsetDateTime.now()`.
+
+### API Design
+- Return `ResponseEntity<T>` from all controller methods.
+- Follow RESTful naming conventions (e.g., `/api/business-units`, `/api/location-types`).
+
+---
+Happy Coding!
