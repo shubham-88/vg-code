@@ -7,9 +7,9 @@ services:
     container_name: vg-postgres
     restart: always
     environment:
-      POSTGRES_USER: postgres-vg
-      POSTGRES_PASSWORD: postgres-vg
-      POSTGRES_DB: postgres
+      POSTGRES_USER: vgroot
+      POSTGRES_PASSWORD: vgroot
+      POSTGRES_DB: vgdb
       PGTZ: Asia/Kolkata
     ports:
       - "5432:5432"

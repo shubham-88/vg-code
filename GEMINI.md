@@ -58,7 +58,7 @@ From the `pv-app` directory:
 - **Entities:** Uses standard Jakarta Persistence annotations. Entities include `createdAt` and `updatedAt` timestamps (managed manually in services).
 - **API Design:** RESTful controllers returning `ResponseEntity`.
 - **Database:** 
-  - Schema is defined in `application.properties` as `postgres-vg-sc1`.
+  - Schema is defined in `application.properties` as `vg-sc1`.
   - Hibernate DDL-auto is set to `none`; all schema changes MUST be done through Liquibase migrations.
   - Liquibase changelogs are located in `pv-app/src/main/resources/db/changelog/`.
 

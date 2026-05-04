@@ -7,7 +7,7 @@ This project uses Spring Data JPA with PostgreSQL and Liquibase for schema manag
 ### Annotations
 
 - **Entity:** `@Entity` at the class level.
-- **Table:** `@Table(name = "table_name", schema = "postgres-vg-sc1")`.
+- **Table:** `@Table(name = "table_name", schema = "vg-sc1")`.
 - **Primary Key:** `@Id` and `@GeneratedValue(strategy = GenerationType.IDENTITY)`.
 - **Columns:** `@Column` for database column mapping. Use `@Column(name = "column_name")`.
 
@@ -30,7 +30,7 @@ Manually implement:
 
 - All schema changes MUST be done using SQL files in `pv-app/src/main/resources/db/changelog/migrations/`.
 - New migrations should be added as `.sql` files and registered in `db.changelog-migration.xml`.
-- Schema name: `postgres-vg-sc1`.
+- Schema name: `vg-sc1`.
 
 ## Database Interaction
 
