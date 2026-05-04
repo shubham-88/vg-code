@@ -1,6 +1,18 @@
-{
-  "name": "MMH",
+[{
+  "name": "PRODUCTION",
   "locationType": { "id": 1 },
-  "businessUnit": { "id": 1 },
-  "parentLocation":{"id": 1}
-}
+  "businessUnit": { "id": 1 }
+},
+  {
+    "name": "MMH",
+    "locationType": {
+      "id": 1
+    },
+    "businessUnit": {
+      "id": 1
+    },
+    "parentLocation": {
+      "id": 1
+    }
+  }
+]
