@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Standard Spool S1",
+    "code": "SPL-S1",
+    "spoolNumber": 201,
+    "selfWeight": 10.250,
+    "isActive": true,
+    "sortOrder": 1
+  }
+]

@@ -1,0 +1,124 @@
+{
+  "name": "MMH Form Version 1",
+  "location": {
+    "id": 2
+  },
+  "attributes": [
+    {
+      "name": "spool",
+      "fieldType": 24,
+      "fieldDataType": 18,
+      "required": true,
+      "active": true,
+      "label": "Spool",
+      "placeholder": "Select Spool",
+      "displayOrder": 1,
+      "defaultValue": null,
+      "master":1
+    },
+    {
+      "name": "size",
+      "fieldType": 24,
+      "fieldDataType": 18,
+      "required": true,
+      "active": true,
+      "label": "Size",
+      "placeholder": "Select Size",
+      "displayOrder": 2,
+      "defaultValue": null,
+      "master": "Size Master need to be added"
+    },
+    {
+      "name": "wire",
+      "fieldType": 24,
+      "fieldDataType": 18,
+      "required": true,
+      "active": true,
+      "label": "Wire",
+      "placeholder": "Select Wire",
+      "displayOrder": 3,
+      "defaultValue": null,
+      "master": "Wire Master need to be added"
+    },
+    {
+      "name": "gross_weight",
+      "fieldType": 1,
+      "fieldDataType": 6,
+      "required": true,
+      "active": true,
+      "label": "Gross Weight",
+      "placeholder": "Enter weight",
+      "displayOrder": 4,
+      "defaultValue": null,
+      "master": null
+    },
+    {
+      "name": "remarks",
+      "fieldType": 23,
+      "fieldDataType": 14,
+      "required": true,
+      "active": true,
+      "label": "Remarks",
+      "placeholder": "Remarks",
+      "displayOrder": 5,
+      "defaultValue": null,
+      "master": null
+    }
+  ],
+  "headers": [
+    {
+      "name": "S.No.",
+      "key": "id",
+      "formula": null,
+      "displayOrder": 1
+    },
+    {
+      "name": "Spool No",
+      "key": "spool",
+      "formula": null,
+      "displayOrder": 2
+    },
+    {
+      "name": "Item code",
+      "key": "spool",
+      "formula": null,
+      "displayOrder": 3
+    },
+    {
+      "name": "Description",
+      "key": "wire,size",
+      "formula": null,
+      "displayOrder": 4
+    },
+    {
+      "name": "Gross weight",
+      "key": "gross_weight",
+      "formula": null,
+      "displayOrder": 5
+    },
+    {
+      "name": "Spool weight",
+      "key": "spool",
+      "formula": null,
+      "displayOrder": 6
+    },
+    {
+      "name": "Net weight",
+      "key": "spool,gross_weight",
+      "formula": "netWeight(spool,gross_weight)",
+      "displayOrder": 7
+    },
+    {
+      "name": "Length(mtr)",
+      "key": "spool,gross_weight",
+      "formula": "lengthWeightConverter(spool,gross_weight)",
+      "displayOrder": 8
+    },
+    {
+      "name": "Remarks",
+      "key": "remarks",
+      "formula": null,
+      "displayOrder": 9
+    }
+  ]
+}

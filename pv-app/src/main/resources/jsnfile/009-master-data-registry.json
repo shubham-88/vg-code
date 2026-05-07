@@ -10,5 +10,9 @@
   {
     "name": "Location",
     "tableName": "location"
+  },
+  {
+    "name": "Spool",
+    "tableName": "spool"
   }
 ]
