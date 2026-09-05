@@ -1,0 +1,13 @@
+podman run -d --name mysql-8.3 -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 docker.io/library/mysql:8.3.0
+podman exec -it mysql-8.3 mysql -u root -p
+=====================================================================================================================
+--Connect Postgress running in podman to local CMD
+podman exec -it  vg-postgres sh
+psql -u vgroot -d vgdb
+ \dn+
+set search_path to "vg-sc1";
+select current_schema();
+\dt
+
+---Export Latest DB from Postgres .
+podman exec -i vg-postgres pg_dump -U vgroot -d vgdb > D:\git-src-code\vg-code\pv-app\src\main\resources\help\mydb_dump_$(Get-Date -Format 'yyyyMMdd_HHmmss').sql
