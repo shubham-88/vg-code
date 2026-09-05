@@ -1,0 +1,42 @@
+[
+  {
+    "name": "7 Wires",
+    "val": 7.0000,
+    "uom": "Wires",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 1
+  },
+  {
+    "name": "8 Wires",
+    "val": 8.0000,
+    "uom": "Wires",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 2
+  },
+  {
+    "name": "14 Wires",
+    "val": 14.0000,
+    "uom": "Wires",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 3
+  },
+  {
+    "name": "15 Wires",
+    "val": 15.0000,
+    "uom": "Wires",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 4
+  },
+  {
+    "name": "16 Wires",
+    "val": 16.0000,
+    "uom": "Wires",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 5
+  }
+]

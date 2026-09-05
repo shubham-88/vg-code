@@ -1,0 +1,58 @@
+[
+  {
+    "name": "0.5 & 0.75 Sq.MM",
+    "val": 0.5000,
+    "uom": "Sq.MM",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 1
+  },
+  {
+    "name": "1 Sq.MM",
+    "val": 1.0000,
+    "uom": "Sq.MM",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 2
+  },
+  {
+    "name": "1.5 Sq.MM",
+    "val": 1.5000,
+    "uom": "Sq.MM",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 3
+  },
+  {
+    "name": "2.5 Sq.MM",
+    "val": 2.5000,
+    "uom": "Sq.MM",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 4
+  },
+  {
+    "name": "4 Sq.MM",
+    "val": 4.0000,
+    "uom": "Sq.MM",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 5
+  },
+  {
+    "name": "6 Sq.MM",
+    "val": 6.0000,
+    "uom": "Sq.MM",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 6
+  },
+  {
+    "name": "10 Sq.MM",
+    "val": 10.0000,
+    "uom": "Sq.MM",
+    "category": "MMH",
+    "isActive": true,
+    "sortOrder": 7
+  }
+]

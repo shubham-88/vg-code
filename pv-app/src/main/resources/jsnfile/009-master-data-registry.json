@@ -14,5 +14,13 @@
   {
     "name": "Spool",
     "tableName": "spool"
+  },
+  {
+    "name": "Size",
+    "tableName": "size"
+  },
+  {
+    "name": "Wire",
+    "tableName": "wire"
   }
 ]
